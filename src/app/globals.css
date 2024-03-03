@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.banner-products .swiper-wrapper {
+    width: 400px;
+    height: 100vh;
+}
+
+.banner-products .swiper {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.banner-products .swiper-slide {
+    display: flex;
+    align-items: center;
+}
+
+.banner-products .title-brand-product {
+    max-width: 475px;
+}
