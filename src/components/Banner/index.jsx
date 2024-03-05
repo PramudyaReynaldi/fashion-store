@@ -1,7 +1,8 @@
-"use client"
+"use client";
 
 import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Link from "next/link";
 import axios from "axios";
 import Image from "next/image";
 
@@ -42,7 +43,10 @@ const Banner = () => {
     return (
         <div className="banner-products">
             <div className="flex lg:flex-row flex-col justify-evenly items-center">
-                <h1 className="text-5xl font-bold title-brand-product lg:block hidden">{currentProductTitle}</h1>
+                <div className="lg:block hidden">
+                    <h1 className="text-5xl font-bold title-brand-product pb-9">{currentProductTitle}</h1>
+                    {products.length > 0 && <Link href="/shop" className="text-2xl font-semibold pb-2 border-b-2 border-current">Shop Now</Link>}
+                </div>
                 <Swiper
                     spaceBetween={50}
                     slidesPerView={1}
@@ -61,7 +65,7 @@ const Banner = () => {
                                 alt={product.title} 
                                 width={400} 
                                 height={400} 
-                                style={{width:'auto', height: "auto" }}
+                                style={{ width:'auto', height: "auto" }}
                                 priority
                             />
                         </SwiperSlide>
