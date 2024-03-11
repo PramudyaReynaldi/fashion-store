@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Loading */
+.loading {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: conic-gradient(#0000 10%,#000000);
+    -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 9px),#000 0);
+    animation: spinner-zp9dbg 1s infinite linear;
+}
+ 
+@keyframes spinner-zp9dbg {
+    to {
+       transform: rotate(1turn);
+    }
+}
+
 .banner-products .swiper-wrapper {
     width: 400px;
     height: 100vh;
@@ -21,6 +37,15 @@
 .banner-products .title-brand-product {
     max-width: 475px;
     line-height: 65px;
+}
+
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+    color: #000;
+    font-weight: 600;
+}
+
+.css-1aquho2-MuiTabs-indicator {
+    background-color: #000;
 }
 
 @media screen and (max-width: 768px) {

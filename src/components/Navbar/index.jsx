@@ -6,7 +6,7 @@ import { FaRegUser, FaSearch, FaRegHeart, FaCartPlus } from "react-icons/fa";
 
 const DesktopView = () => {
     return (
-        <nav className="lg:block md:block hidden">
+        <nav className="lg:block md:block hidden bg-primary fixed w-full z-50">
             <div className="flex items-center justify-between p-5">
                 <div style={{ marginRight: "10rem" }}></div>
                 <ul className="flex justify-center items-center gap-20">

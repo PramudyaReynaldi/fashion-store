@@ -1,11 +1,11 @@
 import Banner from "@/components/Banner";
-import TopProducts from "@/components/TopProducts";
+import Categories from "@/components/Categories";
 
 export default function Home () {
     return (
         <section>
             <Banner />
-            <TopProducts />
+            <Categories />
         </section>
     );
 };
