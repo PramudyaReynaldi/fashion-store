@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Tabs, Tab, Typography, Grid } from "@mui/material";
+import CardProduct from "../CardProduct";
 
 const TabPanel = ({ value, index, children }) => (
     <div hidden={value !== index}>
@@ -74,11 +75,16 @@ const Categories = () => {
             </Tabs>
             {categories.map((category, index) => (
                 <TabPanel value={value} index={index} key={index}>
-                    <Grid container item xs={12} spacing={2} className="pt-10">
+                    <Grid container item xs={10} spacing={0} className="pt-10 m-auto">
                         {filterProducts.map((product) => (
-                            <Grid item xs={3} key={product.id}>
-                                <img src={product.image} alt={product.title} />
-                                <h3>{product.title}</h3>
+                            <Grid item xs={6} md={4} lg={3} key={product.id}>
+                                <CardProduct
+                                    category={product.category}
+                                    titleProduct={product.title}
+                                    description={product.description}
+                                    image={product.image}
+                                    price={product.price}
+                                />
                             </Grid>
                         ))}
                     </Grid>
