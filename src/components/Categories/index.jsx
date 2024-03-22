@@ -84,6 +84,7 @@ const Categories = () => {
                                     description={product.description}
                                     image={product.image}
                                     price={product.price}
+                                    productId={product.id}
                                 />
                             </Grid>
                         ))}

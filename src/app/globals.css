@@ -48,6 +48,46 @@
     background-color: #000;
 }
 
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.overlay:hover {
+    opacity: 1;
+}
+
+.overlay button {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px 13px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.overlay button:hover {
+    background-color: #cccccc; /* Warna latar belakang tombol saat dihover */
+}
+
+
 @media screen and (max-width: 768px) {
     .banner-products .swiper-wrapper {
         max-width: 200px;
