@@ -42,7 +42,7 @@ const Banner = () => {
 
     return (
         <div className="banner-products">
-            <div className="flex lg:flex-row flex-col justify-evenly items-center">
+            <div className="flex lg:flex-row flex-col justify-between items-center">
                 <div className="lg:block hidden">
                     <h1 className="text-5xl font-bold title-brand-product pb-9">{currentProductTitle}</h1>
                     {products.length > 0 && <Link href="/shop" className="text-2xl font-semibold pb-2 border-b-2 border-current">Shop Now</Link>}
