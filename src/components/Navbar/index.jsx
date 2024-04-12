@@ -8,7 +8,9 @@ const DesktopView = () => {
     return (
         <nav className="lg:block md:block hidden bg-primary fixed w-full z-50">
             <div className="flex items-center justify-between p-5">
-                <div style={{ marginRight: "10rem" }}></div>
+                <div>
+                    <Link href="/" className="text-3xl font-extrabold">FStore</Link>
+                </div>
                 <ul className="flex justify-center items-center gap-20">
                     <li className="nav-item">
                         <Link href="/" className="font-semibold">Home</Link>
