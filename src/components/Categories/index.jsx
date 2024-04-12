@@ -75,7 +75,7 @@ const Categories = () => {
             </Tabs>
             {categories.map((category, index) => (
                 <TabPanel value={value} index={index} key={index}>
-                    <Grid container item xs={10} spacing={0} className="pt-10 m-auto">
+                    <Grid container item xs={12} spacing={0} className="pt-10 m-auto">
                         {filterProducts.map((product) => (
                             <Grid item xs={6} md={4} lg={3} key={product.id}>
                                 <CardProduct
