@@ -28,7 +28,7 @@ const CardProduct = ({ category, titleProduct, price, image, productId }) => {
                 <p className="mt-1 font-semibold">${price}</p>
             </div>
             <div className="flex items-center flex-wrap">
-                <Link href={`/detail-product/${productId}`} className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">
+                <Link href={`/detail-product/${productId}`} className="flex items-center font-semibold py-2">
                     View Detail
                     <svg
                         className="w-4 h-4 ml-2"
