@@ -42,10 +42,10 @@ const Banner = () => {
 
     return (
         <div className="banner-products">
-            <div className="flex lg:flex-row flex-col justify-between items-center">
-                <div className="lg:block hidden">
-                    <h1 className="text-5xl font-bold title-brand-product pb-9">{currentProductTitle}</h1>
-                    {products.length > 0 && <Link href="/shop" className="text-2xl font-semibold pb-2 border-b-2 border-current">Shop Now</Link>}
+            <div className="flex lg:flex-row justify-between items-center">
+                <div className="">
+                    <h1 className="lg:text-5xl text-2xl font-bold title-brand-product pb-9">{currentProductTitle}</h1>
+                    {products.length > 0 && <Link href="/shop" className="lg:text-2xl text-xl font-semibold pb-2 border-b-2 border-current">Shop Now</Link>}
                 </div>
                 <Swiper
                     spaceBetween={50}

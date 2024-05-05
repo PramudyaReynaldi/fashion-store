@@ -91,5 +91,19 @@
 @media screen and (max-width: 768px) {
     .banner-products .swiper-wrapper {
         max-width: 200px;
+        height: 57vh;
+    }
+
+    .banner-products .title-brand-product {
+        line-height: 38px;
+        max-width: 233px;
+    }
+
+    .css-1wf8b0h-MuiTabs-flexContainer {
+        display: block;
+    }
+
+    .css-jpln7h-MuiTabs-scroller {
+        overflow-x: auto !important;
     }
 }
