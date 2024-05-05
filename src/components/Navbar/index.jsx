@@ -46,7 +46,7 @@ const MobileView = () => {
     return (
         <nav className="p-4 bg-primary fixed w-full z-50">
             <div className="flex items-center justify-between">
-                <div className="font-extrabold">FStore</div>
+                <Link href="/" className="font-extrabold text-xl">FStore</Link>
                 <button onClick={toggleMenu} className="lg:hidden focus:outline-none">
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -61,9 +61,9 @@ const MobileView = () => {
     
             {isOpen && (
                 <div className="mt-4">
-                    <a href="#" className="block py-2">Menu Item 1</a>
-                    <a href="#" className="block py-2">Menu Item 2</a>
-                    <a href="#" className="block py-2">Menu Item 3</a>
+                    <Link href="/shop" className="block py-2">Shop</Link>
+                    <Link href="#" className="block py-2">Menu Item 2</Link>
+                    <Link href="#" className="block py-2">Menu Item 3</Link>
                 </div>
             )}
         </nav>

@@ -106,4 +106,8 @@
     .css-jpln7h-MuiTabs-scroller {
         overflow-x: auto !important;
     }
+
+    .css-1oqqzyl-MuiContainer-root {
+        padding-top: 3rem;
+    }
 }
