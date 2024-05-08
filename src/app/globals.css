@@ -39,12 +39,12 @@
     line-height: 65px;
 }
 
-.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+.MuiButtonBase-root.Mui-selected {
     color: #000;
     font-weight: 600;
 }
 
-.css-1aquho2-MuiTabs-indicator {
+.MuiTabs-indicator {
     background-color: #000;
 }
 
