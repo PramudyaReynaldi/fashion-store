@@ -99,15 +99,15 @@
         max-width: 233px;
     }
 
-    .css-1wf8b0h-MuiTabs-flexContainer {
-        display: block;
+    .MuiTabs-flexContainer {
+        display: block !important;
     }
 
-    .css-jpln7h-MuiTabs-scroller {
+    .MuiTabs-scroller {
         overflow-x: auto !important;
     }
 
-    .css-1oqqzyl-MuiContainer-root {
+    .MuiContainer-root {
         padding-top: 3rem;
     }
 }
