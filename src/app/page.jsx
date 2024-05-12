@@ -12,7 +12,7 @@ export default function Home () {
                     <Banner />
                     <Categories />
                 </Container>
-                <BannerContact />
+                {/* <BannerContact /> */}
             </Transition>
         </>
     );
