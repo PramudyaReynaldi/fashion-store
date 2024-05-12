@@ -1,7 +1,6 @@
 import { Mulish } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Container from "@mui/material/Container";
 
 import "./globals.css";
 
@@ -17,9 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={mulish.className}>
         <Navbar />
-          <Container>
-            {children}
-          </Container>
+          {children}
         <Footer />
       </body>
     </html>
