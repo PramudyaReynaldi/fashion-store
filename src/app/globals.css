@@ -40,12 +40,12 @@
 }
 
 .MuiButtonBase-root.Mui-selected {
-    color: #000;
+    color: #000 !important;
     font-weight: 600;
 }
 
 .MuiTabs-indicator {
-    background-color: #000;
+    background-color: #000 !important;
 }
 
 .overlay {
@@ -69,23 +69,24 @@
 .overlay button {
     background-color: #ffffff;
     color: #000000;
-    padding: 10px 13px;
+    padding: 16px 17px;
     border: none;
-    border-radius: 5px;
+    border-radius: 50%;
     cursor: pointer;
     outline: none;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 5px;
-    font-size: 12px;
+    font-size: 20px;
     font-weight: bold;
     transition: background-color 0.3s ease;
 }
 
+/* 
 .overlay button:hover {
-    background-color: #cccccc; /* Warna latar belakang tombol saat dihover */
-}
+    background-color: #cccccc;
+} */
 
 @media screen and (max-width: 768px) {
     .banner-products .swiper-wrapper {

@@ -16,7 +16,6 @@ const CardProduct = ({ category, titleProduct, price, image, productId }) => {
                 <div className="overlay">
                     <button>
                         <FaCartPlus />
-                        Add Cart
                     </button>
                 </div>
             </a>
@@ -28,7 +27,10 @@ const CardProduct = ({ category, titleProduct, price, image, productId }) => {
                 <p className="mt-1 font-semibold">${price}</p>
             </div>
             <div className="flex items-center flex-wrap">
-                <Link href={`/detail-product/${productId}`} className="flex items-center font-semibold py-2">
+                <Link
+                    href={`/detail-product/${productId}`}
+                    className="flex items-center font-semibold py-2"
+                >
                     View Detail
                     <svg
                         className="w-4 h-4 ml-2"

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Container } from "@mui/material";
+import Loading from "@/app/loading";
 
 const DetailProductPage = ({ params }) => {
     const { id } = params;
@@ -204,9 +205,7 @@ const DetailProductPage = ({ params }) => {
                             </div>
                         </div>
                     ) : (
-                        <div className="h-screen flex justify-center items-center">
-                            <div className="flex justify-center items-center text-3xl loading"></div>
-                        </div>
+                        <Loading />
                     )}
                 </div>
             </section>

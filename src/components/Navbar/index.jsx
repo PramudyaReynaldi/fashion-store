@@ -3,8 +3,15 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { FaRegUser, FaSearch, FaRegHeart, FaCartPlus } from "react-icons/fa";
+import SidebarCart from "../SidebarCart";
 
 const DesktopView = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleSidebar = () => {
+        setIsOpen(!isOpen);
+    };
+
     return (
         <nav className="lg:block md:block hidden bg-primary fixed w-full z-50">
             <div className="flex items-center justify-between p-5">
@@ -29,9 +36,11 @@ const DesktopView = () => {
                     <Link href="#"><FaRegUser /></Link>
                     <Link href="#"><FaSearch /></Link>
                     <Link href="#"><FaRegHeart /></Link>
-                    <Link href="#"><FaCartPlus /></Link>
+                    <Link href="#" onClick={toggleSidebar}><FaCartPlus /></Link>
                 </div>
             </div>
+
+            <SidebarCart isOpen={isOpen} toggleSidebar={toggleSidebar} />
         </nav>
     );
 };
@@ -44,7 +53,7 @@ const MobileView = () => {
     };
   
     return (
-        <nav className="p-4 bg-primary fixed w-full z-50">
+        <nav className="p-4 bg-primary fixed w-full z-40">
             <div className="flex items-center justify-between">
                 <Link href="/" className="font-extrabold text-xl">FStore</Link>
                 <button onClick={toggleMenu} className="lg:hidden focus:outline-none">
