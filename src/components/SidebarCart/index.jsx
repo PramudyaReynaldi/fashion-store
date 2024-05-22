@@ -1,7 +1,34 @@
-"use client";
+import React, { useContext } from "react";
+import CartContext from "@/context/CartContext";
 
 const SidebarCart = ({ isOpen, toggleSidebar }) => {
+    const { cartItems, increaseQuantity, decreaseQuantity, removeItem } = useContext(CartContext);
+
     if (!isOpen) return null;
+
+    const subtotal = cartItems.reduce((acc, item) => {
+        const itemPrice = Number(item.price);
+        const itemQuantity = Number(item.quantity);
+        
+        if (!isNaN(itemPrice) && !isNaN(itemQuantity)) {
+            return acc + (itemPrice * itemQuantity);
+        } else {
+            return acc;
+        }
+    }, 0);
+
+    const handleIncreaseQuantity = (productId) => {
+        increaseQuantity(productId);
+    };
+    
+    const handleDecreaseQuantity = (productId) => {
+        decreaseQuantity(productId);
+    };
+
+    const handleRemoveItem = (productId) => {
+        removeItem(productId);
+    };
+    
 
     return (
         <div
@@ -55,95 +82,74 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
 
                                     <div className="mt-8">
                                         <div className="flow-root">
-                                            <ul
-                                                role="list"
-                                                className="-my-6 divide-y divide-gray-200"
-                                            >
-                                                <li className="flex py-6">
-                                                    <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                                        <img
-                                                            src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg"
-                                                            alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
-                                                            className="h-full w-full object-cover object-center"
-                                                        />
-                                                    </div>
+                                            <ul className="-my-6 divide-y divide-gray-200">
+                                                {cartItems.map((item) => (
+                                                    <li key={item.productId} className="flex py-6">
+                                                        <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                                            <img
+                                                                src={item.image}
+                                                                alt={item.title}
+                                                                className="h-full w-full object-cover object-center"
+                                                            />
+                                                        </div>
 
-                                                    <div className="ml-4 flex flex-1 flex-col">
-                                                        <div>
-                                                            <div className="flex justify-between text-base font-medium text-gray-900">
-                                                                <h3>
-                                                                    <a href="#">
-                                                                        Throwback
-                                                                        Hip Bag
-                                                                    </a>
-                                                                </h3>
-                                                                <p className="ml-4">
-                                                                    $90.00
+                                                        <div className="ml-4 flex flex-1 flex-col">
+                                                            <div>
+                                                                <div className="flex justify-between text-base font-medium text-gray-900">
+                                                                    <h3>{item.titleProduct}</h3>
+                                                                    <p className="ml-4">${item.price}</p>
+                                                                </div>
+                                                                <p className="mt-1 text-sm text-gray-500">
+                                                                    {item.color}
                                                                 </p>
                                                             </div>
-                                                            <p className="mt-1 text-sm text-gray-500">
-                                                                Salmon
-                                                            </p>
-                                                        </div>
-                                                        <div className="flex flex-1 items-end justify-between text-sm">
-                                                            <p className="text-gray-500">
-                                                                Qty 1
-                                                            </p>
-
-                                                            <div className="flex">
+                                                            <div className="flex flex-1 items-end justify-between text-sm">
+                                                                <p className="text-gray-500">Qty {item.quantity}</p>
                                                                 <button
                                                                     type="button"
                                                                     className="font-medium text-indigo-600 hover:text-indigo-500"
+                                                                    onClick={() => handleRemoveItem(item.productId)}
                                                                 >
                                                                     Remove
                                                                 </button>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </li>
-                                                <li className="flex py-6">
-                                                    <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                                        <img
-                                                            src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg"
-                                                            alt="Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch."
-                                                            className="h-full w-full object-cover object-center"
-                                                        />
-                                                    </div>
 
-                                                    <div className="ml-4 flex flex-1 flex-col">
                                                         <div>
-                                                            <div className="flex justify-between text-base font-medium text-gray-900">
-                                                                <h3>
-                                                                    <a href="#">
-                                                                        Medium
-                                                                        Stuff
-                                                                        Satchel
-                                                                    </a>
-                                                                </h3>
-                                                                <p className="ml-4">
-                                                                    $32.00
-                                                                </p>
-                                                            </div>
-                                                            <p className="mt-1 text-sm text-gray-500">
-                                                                Blue
-                                                            </p>
-                                                        </div>
-                                                        <div className="flex flex-1 items-end justify-between text-sm">
-                                                            <p className="text-gray-500">
-                                                                Qty 1
-                                                            </p>
-
-                                                            <div className="flex">
+                                                            <label htmlFor={`quantity-${item.productId}`} className="sr-only">Quantity</label>
+                                                            <div className="flex items-center">
                                                                 <button
                                                                     type="button"
-                                                                    className="font-medium text-indigo-600 hover:text-indigo-500"
+                                                                    className="text-indigo-600 focus:outline-none focus:text-indigo-800"
+                                                                    onClick={() => handleDecreaseQuantity(item.productId)}
                                                                 >
-                                                                    Remove
+                                                                    <span className="sr-only">Decrease quantity</span>
+                                                                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                                                        <path fillRule="evenodd" d="M12 5a1 1 0 0 1 1 1v8a1 1 0 0 1-2 0V6a1 1 0 0 1 1-1z"></path>
+                                                                    </svg>
+                                                                </button>
+                                                                <input
+                                                                    type="text"
+                                                                    id={`quantity-${item.productId}`}
+                                                                    name={`quantity-${item.productId}`}
+                                                                    value={item.quantity}
+                                                                    className="appearance-none border border-gray-200 rounded w-10 text-center py-1 px-2 mr-2"
+                                                                    readOnly
+                                                                />
+                                                                <button
+                                                                    type="button"
+                                                                    className="text-indigo-600 focus:outline-none focus:text-indigo-800"
+                                                                    onClick={() => handleIncreaseQuantity(item.productId)}
+                                                                >
+                                                                    <span className="sr-only">Increase quantity</span>
+                                                                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                                                        <path fillRule="evenodd" d="M12 5a1 1 0 0 1 1 1v3h3a1 1 0 0 1 0 2h-3v3a1 1 0 1 1-2 0v-3H6a1 1 0 0 1 0-2h3V6a1 1 0 0 1 1-1z"></path>
+                                                                    </svg>
                                                                 </button>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </li>
+                                                    </li>
+                                                ))}
                                             </ul>
                                         </div>
                                     </div>
@@ -152,7 +158,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                         <p>Subtotal</p>
-                                        <p>$262.00</p>
+                                        <p>${subtotal.toFixed(2)}</p> {/* Fixed to 2 decimal places */}
                                     </div>
                                     <p className="mt-0.5 text-sm text-gray-500">
                                         Shipping and taxes calculated at
