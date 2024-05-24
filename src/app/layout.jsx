@@ -2,6 +2,8 @@ import { Mulish } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/context/CartContext";
+import { CurrencyProvider } from "@/context/CurrencyContext";
+import Script from "next/script";
 
 import "./globals.css";
 
@@ -17,10 +19,17 @@ export default function RootLayout({ children }) {
         <html lang="en">
             <body className={mulish.className}>
                 <CartProvider>
-                    <Navbar />
-                        {children}
-                    <Footer />
+                    <CurrencyProvider>
+                        <Navbar />
+                            {children}
+                        <Footer />
+                    </CurrencyProvider>
                 </CartProvider>
+
+                <Script
+                    src="https://app.sandbox.midtrans.com/snap/snap.js"
+                    data-client-key={process.env.NEXT_PUBLIC_CLIENT}
+                />
             </body>
         </html>
     );

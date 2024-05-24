@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Tabs, Tab, Typography, Grid } from "@mui/material";
 import CardProduct from "../CardProduct";
+import CurrencyContext from '@/context/CurrencyContext';
 
 const TabPanel = ({ value, index, children }) => (
     <div hidden={value !== index}>
@@ -16,8 +17,11 @@ const Categories = () => {
     const [products, setProducts] = useState([]);
     const [filterProducts, setFilterProducts] = useState([]);
 
+    const { convertPrice } = useContext(CurrencyContext);
+
     const handleChange = (event, newValue) => setValue(newValue);
 
+    // Entry point for fetching data
     const fetchData = async (url, setter, errorMessage) => {
         try {
             const response = await fetch(
@@ -27,13 +31,22 @@ const Categories = () => {
 
             console.log(`${setter.name} from API:`, data);
 
-            setter(data);
+            // Konversi harga produk jika url adalah "products"
+            if (url === "products") {
+                const convertedData = data.map(product => ({
+                    ...product,
+                    price: convertPrice(product.price)
+                }));
+                setter(convertedData);
+            } else {
+                setter(data);
+            }
         } catch (error) {
             console.log(`Error fetching ${errorMessage}:`, error);
         }
     };
 
-    // Fetch data
+    // Fetch data categories & products
     const getCategories = () => fetchData("products/categories", setCategories, "categories");
     const getProducts = () => fetchData("products", setProducts, "products");
 
@@ -84,8 +97,9 @@ const Categories = () => {
                                     titleProduct={product.title}
                                     description={product.description}
                                     image={product.image}
-                                    price={product.price}
+                                    price={product.price.toLocaleString('id-ID')}
                                     productId={product.id}
+                                    rating={product.rating.count}
                                 />
                             </Grid>
                         ))}

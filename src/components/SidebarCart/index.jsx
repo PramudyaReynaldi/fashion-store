@@ -28,6 +28,23 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
     const handleRemoveItem = (productId) => {
         removeItem(productId);
     };
+
+    const handleCheckout = async () => {
+        const orderDetails = cartItems.map((item) => ({
+            productId: item.productId,
+            quantity: item.quantity,
+            price: item.price,
+            titleProduct: item.titleProduct.substring(0, 50),
+        }))
+
+        const response = await fetch("/api/tokenizer", {
+            method: "POST",
+            body: JSON.stringify(orderDetails)
+        });
+
+        const requestData = await response.json();
+        window.snap.pay(requestData.token);
+    };
     
 
     return (
@@ -81,12 +98,12 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                                         <div className="flow-root">
                                             <ul className="-my-6 divide-y divide-gray-200">
                                                 {cartItems.map((item) => (
-                                                    <li key={item.productId} className="flex py-6">
-                                                        <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                                    <li key={item.productId} className="flex py-6 gap-3">
+                                                        <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200 shadow-lg">
                                                             <img
                                                                 src={item.image}
                                                                 alt={item.title}
-                                                                className="h-full w-full object-cover object-center"
+                                                                className="h-full w-full object-contain object-center"
                                                             />
                                                         </div>
 
@@ -94,7 +111,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                                                             <div>
                                                                 <div className="flex justify-between text-base font-medium text-gray-900">
                                                                     <h3>{item.titleProduct}</h3>
-                                                                    <p className="ml-4">${item.price}</p>
+                                                                    <p className="ml-4">Rp. {item.price.toLocaleString('id-ID')}</p>
                                                                 </div>
                                                                 <p className="mt-1 text-sm text-gray-500">
                                                                     {item.color}
@@ -117,31 +134,25 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                                                             <div className="flex items-center">
                                                                 <button
                                                                     type="button"
-                                                                    className="text-indigo-600 focus:outline-none focus:text-indigo-800"
+                                                                    className="text-indigo-600 focus:outline-none focus:text-indigo-800 font-extrabold"
                                                                     onClick={() => handleDecreaseQuantity(item.productId)}
                                                                 >
-                                                                    <span className="sr-only">Decrease quantity</span>
-                                                                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                                                        <path fillRule="evenodd" d="M12 5a1 1 0 0 1 1 1v8a1 1 0 0 1-2 0V6a1 1 0 0 1 1-1z"></path>
-                                                                    </svg>
+                                                                    -
                                                                 </button>
                                                                 <input
                                                                     type="text"
                                                                     id={`quantity-${item.productId}`}
                                                                     name={`quantity-${item.productId}`}
                                                                     value={item.quantity}
-                                                                    className="appearance-none border border-gray-200 rounded w-10 text-center py-1 px-2 mr-2"
+                                                                    className="appearance-none border border-gray-200 rounded w-10 text-center py-1 px-2 mx-2"
                                                                     readOnly
                                                                 />
                                                                 <button
                                                                     type="button"
-                                                                    className="text-indigo-600 focus:outline-none focus:text-indigo-800"
+                                                                    className="text-indigo-600 focus:outline-none focus:text-indigo-800 font-extrabold"
                                                                     onClick={() => handleIncreaseQuantity(item.productId)}
                                                                 >
-                                                                    <span className="sr-only">Increase quantity</span>
-                                                                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                                                        <path fillRule="evenodd" d="M12 5a1 1 0 0 1 1 1v3h3a1 1 0 0 1 0 2h-3v3a1 1 0 1 1-2 0v-3H6a1 1 0 0 1 0-2h3V6a1 1 0 0 1 1-1z"></path>
-                                                                    </svg>
+                                                                    +
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -155,7 +166,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                         <p>Subtotal</p>
-                                        <p>${subtotal.toFixed(2)}</p> {/* Fixed to 2 decimal places */}
+                                        <p>Rp. {subtotal.toLocaleString('id-ID')}</p>
                                     </div>
                                     <p className="mt-0.5 text-sm text-gray-500">
                                         Shipping and taxes calculated at
@@ -165,6 +176,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                                         <a
                                             href="#"
                                             className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                                            onClick={handleCheckout}
                                         >
                                             Checkout
                                         </a>
