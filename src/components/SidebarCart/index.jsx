@@ -29,22 +29,22 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
         removeItem(productId);
     };
 
-    const handleCheckout = async () => {
-        const orderDetails = cartItems.map((item) => ({
-            productId: item.productId,
-            quantity: item.quantity,
-            price: item.price,
-            titleProduct: item.titleProduct.substring(0, 50),
-        }))
+    // const handleCheckout = async () => {
+    //     const orderDetails = cartItems.map((item) => ({
+    //         productId: item.productId,
+    //         quantity: item.quantity,
+    //         price: item.price,
+    //         titleProduct: item.titleProduct.substring(0, 50),
+    //     }))
 
-        const response = await fetch("/api/tokenizer", {
-            method: "POST",
-            body: JSON.stringify(orderDetails)
-        });
+    //     const response = await fetch("/api/tokenizer", {
+    //         method: "POST",
+    //         body: JSON.stringify(orderDetails)
+    //     });
 
-        const requestData = await response.json();
-        window.snap.pay(requestData.token);
-    };
+    //     const requestData = await response.json();
+    //     window.snap.pay(requestData.token);
+    // };
     
 
     return (
@@ -59,7 +59,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
             <div className="fixed inset-0 overflow-hidden">
                 <div className="absolute inset-0 overflow-hidden">
                     <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-                        <div className="pointer-events-auto w-screen max-w-md">
+                        <div className="pointer-events-auto w-screen max-w-xl">
                             <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                                 <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                                     <div className="flex items-start justify-between">
@@ -107,15 +107,10 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                                                             />
                                                         </div>
 
-                                                        <div className="ml-4 flex flex-1 flex-col">
-                                                            <div>
-                                                                <div className="flex justify-between text-base font-medium text-gray-900">
-                                                                    <h3>{item.titleProduct}</h3>
-                                                                    <p className="ml-4">Rp. {item.price.toLocaleString('id-ID')}</p>
-                                                                </div>
-                                                                <p className="mt-1 text-sm text-gray-500">
-                                                                    {item.color}
-                                                                </p>
+                                                        <div className="ml-4 flex flex-1 flex-col gap-2">
+                                                            <div className="flex flex-col text-base font-medium gap-1 text-gray-900">
+                                                                <h3>{item.titleProduct}</h3>
+                                                                <p>Rp. {item.price.toLocaleString('id-ID')}</p>
                                                             </div>
                                                             <div className="flex flex-1 items-end justify-between text-sm">
                                                                 <p className="text-gray-500">Qty {item.quantity}</p>
@@ -174,9 +169,9 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                                     </p>
                                     <div className="mt-6">
                                         <a
-                                            href="#"
+                                            href="/cart"
                                             className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                                            onClick={handleCheckout}
+                                            // onClick={handleCheckout}
                                         >
                                             Checkout
                                         </a>

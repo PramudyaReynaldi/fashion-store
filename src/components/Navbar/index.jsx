@@ -82,7 +82,7 @@ const MobileView = () => {
                     <Link href="#" className="text-xl"><FaSearch /></Link>
                     <Link href="#" className="text-xl"><FaRegHeart /></Link>
                     <div className="relative">
-                        <Link href="#" className="text-xl" onClick={toggleSidebar}><FaCartPlus /></Link>
+                        <Link href="/cart" className="text-xl"><FaCartPlus /></Link>
                         {quantity > 0 && (
                             <span className="absolute -top-4 -right-3 text-xs bg-red-500 py-1 px-2 rounded-full text-white">
                                 {quantity}
