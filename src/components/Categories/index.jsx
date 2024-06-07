@@ -71,7 +71,7 @@ const Categories = () => {
     }, [categories]);
 
     return (
-        <section>
+        <section className="mt-10">
             <div className="mb-3">
                 <h3 className="lg:text-3xl text-2xl text-center font-bold">
                     Our Categories

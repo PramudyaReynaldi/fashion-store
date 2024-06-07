@@ -18,7 +18,7 @@ const DesktopView = () => {
     const quantity = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
     return (
-        <nav className="lg:block md:block hidden bg-primary fixed w-full z-50">
+        <nav className="lg:block md:block hidden bg-primary fixed w-full z-50 top-0">
             <div className="flex items-center justify-between p-5">
                 <div>
                     <Link href="/" className="text-3xl font-extrabold">FStore</Link>

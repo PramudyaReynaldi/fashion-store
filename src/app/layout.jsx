@@ -21,7 +21,9 @@ export default function RootLayout({ children }) {
                 <CartProvider>
                     <CurrencyProvider>
                         <Navbar />
+                        <main className="min-h-screen pt-20">
                             {children}
+                        </main>
                         <Footer />
                     </CurrencyProvider>
                 </CartProvider>
