@@ -29,24 +29,6 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
         removeItem(productId);
     };
 
-    // const handleCheckout = async () => {
-    //     const orderDetails = cartItems.map((item) => ({
-    //         productId: item.productId,
-    //         quantity: item.quantity,
-    //         price: item.price,
-    //         titleProduct: item.titleProduct.substring(0, 50),
-    //     }))
-
-    //     const response = await fetch("/api/tokenizer", {
-    //         method: "POST",
-    //         body: JSON.stringify(orderDetails)
-    //     });
-
-    //     const requestData = await response.json();
-    //     window.snap.pay(requestData.token);
-    // };
-    
-
     return (
         <div
             className="relative z-50"
